@@ -1,6 +1,8 @@
 package main
 
-import "learnGo/tree"
+import (
+	"learnGo/tree"
+)
 
 func main() {
 	var root tree.Node
