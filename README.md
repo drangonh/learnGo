@@ -1,11 +1,13 @@
 "# learnGo" 
 
-*如果遇到运行报错：*
+*在用gopath管理依赖时候如果遇到运行报错：*
 `can't load package: package learnGo/tree/entry: malformed module path "learnGo/tree/entry": missing dot in first path element` 
 
 请设置go env -w GO111MODULE=off
 
-*GOPATH目录下的src保存的是每一个项目*
+* GOPATH目录下的src保存的是每一个项目
+* GOPATH管理依赖GO111MODULE=off,go mod管理依赖GO111MODULE=on
+* go mod管理依赖的时候不需要非得把项目放在gopath的src中
 
 ##### 扩展已有包
 *包需要注意的内容*
@@ -28,5 +30,12 @@
 * go语言的接口由使用者定义
 * 接口的实现是隐式的
 * 只要实现接口里的方法
+* interface的值（实例）里面不仅是简单的值引用，里面也包含类型
+* interface的值类型可以通过switch、type assertion来判断；例子见retriever目录下的main
+* 接口变量的值可以是值也可以是指针
+* 因为接口变量的值可以是指针，所以一般不需要接口的指针
+* 指针接受者必须使用指针的方式使用，而值接受可以接受值或者指针
+* interface{}代表任何类型，即没有对类型有限制，例如
+`var r []interface{}`这个r表示一个可以接受任何类型的slice
 
 *自己的理解：接口（interface）是为了方便使用struct中的方法。好处是使用者不需要关心这个struct是谁*

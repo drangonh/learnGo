@@ -11,7 +11,7 @@ type Retriever struct {
 	UseAgent string
 }
 
-func (r Retriever) Get(url string) string {
+func (r *Retriever) Get(url string) string {
 	resp, err := http.Get(url)
 	if err != nil {
 		panic(err)
