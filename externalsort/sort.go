@@ -3,8 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"gomodtest/pipeline"
 	"os"
-	"pipeline"
 )
 
 func main() {

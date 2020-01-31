@@ -3,8 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"gomodtest/pipeline"
 	"os"
-	"pipeline"
 )
 
 //defer是先进后出
