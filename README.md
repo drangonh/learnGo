@@ -38,4 +38,8 @@
 * interface{}代表任何类型，即没有对类型有限制，例如
 `var r []interface{}`这个r表示一个可以接受任何类型的slice
 
+##### 系统常用接口
+* Stringer,通过改写这个接口可以让使用该封装的接口打印指定格式
+* writer/reader 
+
 *自己的理解：接口（interface）是为了方便使用struct中的方法。好处是使用者不需要关心这个struct是谁*
