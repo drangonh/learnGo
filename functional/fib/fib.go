@@ -7,17 +7,17 @@ import (
 	"strings"
 )
 
+//函数类型也可以实现接口
+type intGen func() int
+
 /*斐波拉契数列*/
-func fibonacci() intGen {
+func Fibonacci() intGen {
 	a, b := 0, 1
 	return func() int {
 		a, b = b, a+b
 		return a
 	}
 }
-
-//函数类型也可以实现接口
-type intGen func() int
 
 //实现了Read接口
 func (i intGen) Read(p []byte) (n int, err error) {
@@ -30,15 +30,10 @@ func (i intGen) Read(p []byte) (n int, err error) {
 	return strings.NewReader(s).Read(p)
 }
 
-func printFileContents(reader io.Reader) {
+func PrintFileContents(reader io.Reader) {
 	scanner := bufio.NewScanner(reader)
 	fmt.Printf("%T %v\n", scanner, scanner)
 	for scanner.Scan() {
 		fmt.Println(scanner.Text())
 	}
-}
-
-func main() {
-	f := fibonacci()
-	printFileContents(f)
 }
