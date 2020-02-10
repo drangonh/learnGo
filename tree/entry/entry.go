@@ -62,8 +62,14 @@ func main() {
 	//fmt.Println()
 
 	//newMy := myTree{&root}
-	root.post()
+	//root.post()
 
+	nodeCount := 0
+	root.TraverseFunc(func(node *tree.Node) {
+		nodeCount++
+	})
+
+	fmt.Println("node count:", nodeCount)
 }
 
 func modTest() {

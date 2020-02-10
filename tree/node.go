@@ -35,12 +35,18 @@ func (node *Node) SetValue(value int) {
 }
 
 func (node *Node) Traverse() {
+	node.TraverseFunc(func(n *Node) {
+		n.Printf()
+	})
+}
+
+func (node *Node) TraverseFunc(f func(*Node)) {
 	if node == nil {
 		return
 	}
-	node.Left.Traverse()
-	node.Printf()
-	node.Right.Traverse()
+	node.Left.TraverseFunc(f)
+	f(node)
+	node.Right.TraverseFunc(f)
 }
 
 //使用工厂来构造我们想要的实例，返回的&treeNode{value: value}的地址是局部函数内部的变量地址。
