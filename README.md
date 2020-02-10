@@ -61,4 +61,15 @@
 #### 资源管理和出错处理
 *defer的调用*
 * 确保在函数结束时发生
-*
+* 参数在defer语句时计算
+* defer时先进后出即defer语句最后执行的是第一个defer语句
+
+*一般在一下调用defer*  
+* Open/Close
+* Lock/Unlock
+* PrintHeader/PrintFooter
+
+##### 错误处理概念
+* 按具体错误情况处理
+* 可以自定义error接口中方法`Error() string`的实现
+* 错误分为已知和未知，分别处理
