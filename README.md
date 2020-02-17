@@ -52,7 +52,7 @@
     
 
 *闭包*  
-![](macdownPic/闭包.jpeg)
+![](macdownPic/闭包.png)
 
 *闭包的应用*
 * 可以访问自由变量
