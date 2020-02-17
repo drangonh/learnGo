@@ -73,3 +73,10 @@
 * 按具体错误情况处理
 * 可以自定义error接口中方法`Error() string`的实现
 * 错误分为已知和未知，分别处理
+
+#### 文件操作
+* sudo cp fib.txt fib2.txt，在管理员权限下创建一个fib2.txt并复制fib.txt中的内容
+* cat fib2.txt 查看刚刚常见的文件内容
+* sudo chmod 500 fib2.txt ,让fib2.txt文件没有权限，提示500信息，能操作该文件的人需要是root
+* ls -l 查看当前目录下文件的操作权限,如果当前的用户身份不是root，那么就没有权限去操作fib2.txt
+

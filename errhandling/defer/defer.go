@@ -8,7 +8,7 @@ import (
 )
 
 func writeFile(fileName string) {
-	os, err := os2.OpenFile(fileName, os2.O_EXCL|os2.O_CREATE, 0666)
+	os, err := os2.Create(fileName)
 	if err != nil {
 		fmt.Println("error", err.Error())
 		if pathError, ok := err.(*os2.PathError); !ok {
