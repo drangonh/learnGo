@@ -9,7 +9,7 @@ import (
 type AppHandler func(writer http.ResponseWriter, request *http.Request) error
 
 /*函数式编程，接受一个函数并且返回一个函数，这里返回的函数统一对错误进行了处理*/
-func RrrWrapper(handler AppHandler) func(writer http.ResponseWriter, request *http.Request) {
+func RrrWrapper(handler AppHandler) func(http.ResponseWriter, *http.Request) {
 	return func(writer http.ResponseWriter, request *http.Request) {
 		err := handler(writer, request)
 		if err != nil {

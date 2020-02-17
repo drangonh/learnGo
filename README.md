@@ -80,3 +80,12 @@
 * sudo chmod 500 fib2.txt ,让fib2.txt文件没有权限，提示500信息，能操作该文件的人需要是root
 * ls -l 查看当前目录下文件的操作权限,如果当前的用户身份不是root，那么就没有权限去操作fib2.txt
 
+#### panic（尽量少用）
+* 停止当前函数执行
+* 一直向上返回，执行每一个defer
+* 如果没遇见recover，程序就退出
+
+#### recover
+* 仅在defer调用中使用
+* 获取Panic的值
+* 如果无法处理，可以重新Panic
