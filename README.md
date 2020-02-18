@@ -9,6 +9,10 @@
 * GOPATH管理依赖GO111MODULE=off,go mod管理依赖GO111MODULE=on
 * go mod管理依赖的时候不需要非得把项目放在gopath的src中
 
+#### warning: go env -w GOPROXY=... does not override conflicting OS environment variable
+* 之前设置过环境变量，而go env -w GOPROXY=https://goproxy.cn,direct无法覆盖OS级别的环境变量
+* 解决办法：unset GOPROXY，然后在此设置go env -w GOPROXY=https://goproxy.cn,direct即可
+
 ##### 扩展已有包
 *包需要注意的内容*
 - 为结构定义的包必须放在同一个包内
@@ -99,3 +103,15 @@
 * 类型断言的必要条件就是x是接口类型，非接口类型的x不能做类型断言
 * T可以是非接口类型，如果想断言合法，则T应该实现x的接口
 * T也可以是接口，则x的动态类型也应该实现接口T
+
+#### 传统测试特点
+* 测试数据和测试逻辑混在一起
+* 出错信息不明确
+* 一旦一个数据出错测试全部结束
+
+#### 表格驱动测试
+* 分离测试数据和测试逻辑
+* 明确错误信息
+* 可以部分出错
+* go语言让我们更容易去实现表格驱动测试
+* 在命令行进入当前测试文件的目录然后运行go test .即可测试
