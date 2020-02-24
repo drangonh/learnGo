@@ -3,6 +3,7 @@ package queue
 //interface{}代表任意类型，表示这个slice接受任何类型的值
 type Queue []interface{}
 
+//e.g. q.Push(123)
 func (q *Queue) Push(n interface{}) {
 	//限定Push的值必须为int
 	*q = append(*q, n.(int))

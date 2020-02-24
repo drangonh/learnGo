@@ -129,8 +129,13 @@
 * 如果没有安装graphviz，[graphvi Mac安装方法](https://blog.csdn.net/qq_36847641/article/details/78224910)
 * 分析性能慢在哪里，然后优化代码
 
-#### 生成文档和示例代码
+#### 生成文档
 * godoc使用报错：![godoc报错解决](macdownPic/godoc.jpg)
 * go help doc,查看go doc的命令
 * go doc go文件名，可以查看该文件的方法；go doc Queue
- 
+* godoc -http :6060,然后在本地打开localhost:6060就可以查看代码的文档了。其中包括go自带的库，git，自己项目开发的文档
+
+####示例代码：
+* 文件名:queue_test.go
+* 方法名Example开头
+* fmt.Println输出结果，并且用Output:和期望的结果值来判断是否正确
