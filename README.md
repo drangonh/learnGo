@@ -128,3 +128,9 @@
 * go tool pprof cpu.out;然后输入web就可以输出一个网页图片查看性能耗时。两个命令就是为了查看cpu.out文件内容
 * 如果没有安装graphviz，[graphvi Mac安装方法](https://blog.csdn.net/qq_36847641/article/details/78224910)
 * 分析性能慢在哪里，然后优化代码
+
+#### 生成文档和示例代码
+* godoc使用报错：![godoc报错解决](macdownPic/godoc.jpg)
+* go help doc,查看go doc的命令
+* go doc go文件名，可以查看该文件的方法；go doc Queue
+ 
