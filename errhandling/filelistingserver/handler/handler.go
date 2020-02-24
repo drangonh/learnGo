@@ -14,7 +14,7 @@ const prefix = "/list/"
 func HandlerFileList(writer http.ResponseWriter, request *http.Request) error {
 	if index := strings.Index(request.URL.Path, prefix); index != 0 {
 		fmt.Println(index)
-		return userError("path must start with:" + prefix)
+		return UserError("path must start with:" + prefix)
 	}
 	path := request.URL.Path[len(prefix):]
 	file, err := os.Open(path)
@@ -31,12 +31,12 @@ func HandlerFileList(writer http.ResponseWriter, request *http.Request) error {
 	return nil
 }
 
-type userError string
+type UserError string
 
-func (err userError) Error() string {
+func (err UserError) Error() string {
 	return "Error:" + err.Message()
 }
 
-func (err userError) Message() string {
+func (err UserError) Message() string {
 	return string(err)
 }

@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", filelisting.RrrWrapper(handler.HandlerFileList))
+	http.HandleFunc("/", filelisting.ErrWrapper(handler.HandlerFileList))
 
 	err := http.ListenAndServe(":8888", nil)
 	if err != nil {
