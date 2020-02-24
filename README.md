@@ -115,4 +115,16 @@
 * 可以部分出错
 * go语言让我们更容易去实现表格驱动测试
 * 在命令行进入当前测试文件的目录然后运行go test .即可测试
-* 测试文件名在原文件名基础上加上_test即可
+* 测试文件名在原文件名基础上加上_test即可，例如：main_test.go
+
+#### 代码覆盖率和性能测试
+* go test -coverprofile=c.out,命令行中进入测试文件测试覆盖路
+* 也可以使用goland编辑器测试
+* go tool cover可以显示覆盖率测试可以使用的命令，其中go tool cover -html=c.out可以在网页中显示绿色部分是测试过的代码
+* go test -bench . 性能测试；也可以使用goland编辑器测试性能
+
+#### 优化性能测试
+* go test -bench . -cpuprofile cpu.ou生成一个cpu.out的性能测试文件
+* go tool pprof cpu.out;然后输入web就可以输出一个网页图片查看性能耗时。两个命令就是为了查看cpu.out文件内容
+* 如果没有安装graphviz，[graphvi Mac安装方法](https://blog.csdn.net/qq_36847641/article/details/78224910)
+* 分析性能慢在哪里，然后优化代码
