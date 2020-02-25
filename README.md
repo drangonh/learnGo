@@ -139,3 +139,21 @@
 * 文件名:queue_test.go
 * 方法名Example开头
 * fmt.Println输出结果，并且用Output:和期望的结果值来判断是否正确
+
+#### goroutine
+* goroutine使用方法就是在函数前面加go关键字，该函数一般使用匿名函数
+* goroutine是协程
+* goroutine在main中代码执行完成之后就会关闭 
+```func main() {
+    	for i := 1; i < 10; i++ {
+    		go func(i int) {
+    			for  {
+    				fmt.Printf("我是第%d个函数\n", i)
+    			}
+    		}(i)
+    	}
+    
+    	//加一个延迟是为了在第一个for结束之后main函数还未结束。该函数不会有输出，因为外层循环次数太少，执行时间过短，里面的匿名函数来不及执行
+    	//time.Sleep(time.Millisecond)
+    }
+```
