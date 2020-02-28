@@ -157,3 +157,79 @@
     	//time.Sleep(time.Millisecond)
     }
 ```
+
+#### 协程(coroutine)
+* 轻量级线程
+* 非抢占式多任务处理，由协程主动交出控制权；协程相比较线程消耗资源小
+```
+//main本身就是一个goroutine，这个main中一个两个goroutine
+   func main() {
+   	var a [10]int
+   	for i := 1; i < 10; i++ {
+   		go func(i int) {
+   			for  {
+   				//fmt.Printf("我是第%d个函数\n", i)
+   				a[i]++
+   				//交出goroutine的控制权，不然没办法退出
+   				runtime.Gosched()
+   			}
+   		}(i)
+   	}
+   
+   	//加一个延迟是为了在第一个for结束之后main函数还未结束。
+   	time.Sleep(time.Millisecond)
+   }
+```
+* 编译器/解释器/虚拟机层面的多任务
+* 多个协程可以在一个或者多个线程上运行 
+* ![goroutine](macdownPic/goroutine.png)这张图片代表的是一个进程，一个进程包含多个线程。线程中包含一个或者多个协程
+
+#### goroutine的定义
+* 任何函数加上go关键字就可以交给调度器运行
+* 不需要在定义时区分是否为异步函数
+* 调度器在合适的点进行切换协程
+* 使用-race来访问数据冲突；例如：go run -race goroutine.go
+
+#### goroutine可能的切换点,以下只做参考
+* I/O select
+* channel
+* 等待锁
+* 函数调用（有时）
+* runtime.Gosched()
+* 协程在一台电脑能用多少线程由电脑时几核决定
+
+#### channel
+* var c chan int //c:nil，这时c为nil
+* channel的接受者必须是goroutine，不然就死锁。发送方可以不是goroutine
+* channel是一等公民
+* 以下这段代码中<-c起到两个作用，第一个是从chan c中接收数据；第二个是打印出来。如果直接写成fmt.Printf("id:%d,chan:%c\n", id, c),就会无限输出，并且此时的c也不是chan类型
+* ```
+  func worker(id int, c chan int) {
+     	for {
+     		fmt.Printf("id:%d,chan:%c\n", id, <-c)
+     	}
+     }``` 
+* chan使用流程就是创建chan；创建接收chan的goroutine；最后往chan中发送数据即可。
+* 发送完数据之后关闭chan,必须是发送方去close，close对于性能有好处，避免占用多余的资源;还需要在接收处判断是否还有数据要接受。
+* ```close(c)```
+* ```
+  n ,ok:= <-c
+    if ok {
+      fmt.Printf("id:%d,chan:%c\n", id, n)
+  }
+  ```
+* 发送完数据之后关闭chan，接收处使用range即可
+* ```
+  go func() {
+     for n:=range c {
+     	mt.Printf("id:%d,chan:%c\n", id, n)
+     }
+  }()
+  ```
+
+#### bufferedChannel
+* bufferedChannel和一般的channel相比就是创建的时候增加一个缓冲区参数
+*   ```c := make(chan int, 3)```
+* 缓冲区多大就可以在发送的时候安全的发送多少个数据，超过之后如果没人接收就会出错
+ 
+ 
