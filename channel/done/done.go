@@ -38,13 +38,11 @@ func chanDemo() {
 	for i, worker := range workers {
 		//发送数据
 		worker.in <- 'a' + i
-
 	}
 
 	for i, worker := range workers {
 		//发送数据
 		worker.in <- 'A' + i
-
 	}
 
 	//这里可能会出现的问题是：第一个<-worker.done还没收到;worker.in <- 'A' + i又开始发送数据了就会卡死

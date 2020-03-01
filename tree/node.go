@@ -59,3 +59,15 @@ func (node *Node) TraverseFunc(f func(*Node)) {
 func CreateNode(value int) *Node {
 	return &Node{Value: value}
 }
+
+func (node *Node) TraverseWithChannel() chan *Node {
+	out := make(chan *Node)
+	go func() {
+		node.TraverseFunc(func(nodeNew *Node) {
+			out <- nodeNew
+		})
+		//传出数据之后关闭chan
+		close(out)
+	}()
+	return out
+}

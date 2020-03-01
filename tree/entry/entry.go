@@ -70,6 +70,15 @@ func main() {
 	})
 
 	fmt.Println("node count:", nodeCount)
+
+	maxCount := 0
+	c := root.TraverseWithChannel()
+	for node := range c {
+		if node.Value > maxCount {
+			maxCount = node.Value
+		}
+	}
+	fmt.Println("maxCount:", maxCount)
 }
 
 func modTest() {
