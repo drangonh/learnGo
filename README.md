@@ -246,4 +246,9 @@
  *方法二：
  * sync.WaitGroup中三个方法：Add()：加入多少任务；Wait()：等待任务执行；Done()：等待任务执行完成
  
+ #### 使用select进行调度
+ * channel本身是阻塞式的编程，如果不想阻塞可以用select进行调度
+ * select中default是非阻塞的，所以有default的时候都会走default
+ 
+ 
  
