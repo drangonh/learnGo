@@ -14,7 +14,6 @@ func generator() chan int {
 			time.Sleep(
 				time.Duration(rand.Intn(1500)) *
 					time.Millisecond)
-			fmt.Println(i)
 			out <- i
 			i++
 		}
@@ -24,7 +23,8 @@ func generator() chan int {
 
 func worker(id int, c chan int) {
 	for n := range c {
-		fmt.Printf("id:%d,chan:%c\n", id, n)
+		//fmt.Printf("id:%d,chan:%c\n", id, n)
+		fmt.Printf("worker %d received %d\n", id, n)
 	}
 }
 
@@ -36,14 +36,25 @@ func createWorker(id int) chan<- int {
 
 func main() {
 	var c1, c2 = generator(), generator()
-	w := createWorker(0)
-	for {
-		select {
-		case n := <-c1:
-			w <- n
-		case n := <-c2:
-			w <- n
+	var worker = createWorker(0)
 
+	n := 0
+	hasValue := false
+
+	for {
+		var activeWorker chan<- int
+		if hasValue {
+			activeWorker = worker
+		}
+
+		select {
+		case n = <-c1:
+			hasValue = true
+		case n = <-c2:
+			hasValue = true
+		case activeWorker <- n:
+			fmt.Println(n)
+			hasValue = false
 		}
 	}
 }
