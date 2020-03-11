@@ -23,6 +23,8 @@ func generator() chan int {
 
 func worker(id int, c chan int) {
 	for n := range c {
+		//延迟打印
+		time.Sleep(time.Second * 5)
 		//fmt.Printf("id:%d,chan:%c\n", id, n)
 		fmt.Printf("worker %d received %d\n", id, n)
 	}
@@ -38,23 +40,35 @@ func main() {
 	var c1, c2 = generator(), generator()
 	var worker = createWorker(0)
 
+	//values收集数据
+	var values []int
 	n := 0
-	hasValue := false
+	//hasValue := false
 
 	for {
 		var activeWorker chan<- int
-		if hasValue {
+		var activeValue int
+		//if hasValue {
+		//	activeWorker = worker
+		//}
+
+		if len(values) > 0 {
 			activeWorker = worker
+			activeValue = values[0]
 		}
 
 		select {
 		case n = <-c1:
-			hasValue = true
+			//hasValue = true
+			values = append(values, n)
 		case n = <-c2:
-			hasValue = true
-		case activeWorker <- n:
-			fmt.Println(n)
-			hasValue = false
+			//hasValue = true
+			values = append(values, n)
+
+		case activeWorker <- activeValue:
+			//hasValue = false
+			//fmt.Println(values)
+			values = values[1:]
 		}
 	}
 }
