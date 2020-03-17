@@ -263,9 +263,27 @@
 * 用Fscanf来读取文件内容
 * 用point对象来抽象
 
+#### http
+* 使用http客服端发送请求
+* 使用http.client控制请求头部等
+* 使用httpUtil简化工作
+
+#### http服务器的性能分析
+* import_ "net/http/pprof" ;前面加下环线是告诉程序虽然没用这个模块，但是把这个模块加载进来了
+* 访问debug/pprof
+* go tool pprof 分析性能;heap看能存使用情况；profile查看性能；例如go tool pprof localhost:8888/debug/pprof/profile
+
+#### 其他标准库
+* bufio 读写数据很快
+* log
+* encoding/json
+* regexp
+* time
+* strings/math/rand
+* 如何查看标准库的文档：自己起一个服务，中断输入godoc -http :8888;也可以去中文网看：(golang中文网)[https://studygolang.com]
+
 #### fmt
 * func Fscanf(r io.Reader, format string, a ...interface{}) (n int, err error)；Fscanf 扫描从 r 中读取的文本，并将连续由空格分隔的值存储为连续的实参，其格式由 format 决定。它返回成功解析的条目数
 
 
- 
  
