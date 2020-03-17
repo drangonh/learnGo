@@ -280,7 +280,7 @@
 * regexp
 * time
 * strings/math/rand
-* 如何查看标准库的文档：自己起一个服务，中断输入godoc -http :8888;也可以去中文网看：(golang中文网)[https://studygolang.com]
+* 如何查看标准库的文档：自己起一个服务，中断输入godoc -http :8888;也可以去中文网看：[golang中文网](https://studygolang.com)
 
 #### fmt
 * func Fscanf(r io.Reader, format string, a ...interface{}) (n int, err error)；Fscanf 扫描从 r 中读取的文本，并将连续由空格分隔的值存储为连续的实参，其格式由 format 决定。它返回成功解析的条目数
