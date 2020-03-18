@@ -280,10 +280,40 @@
 * regexp
 * time
 * strings/math/rand
-* 如何查看标准库的文档：自己起一个服务，中断输入godoc -http :8888;也可以去中文网看：[golang中文网](https://studygolang.com)
+* 如何查看标准库的文档：自己起一个服务，中断输入godoc -http :8888;也可以去中文网看：[golang中文网](http://docscn.studygolang.com/pkg/)
+
+#### 第三方http框架
+* gin-gonic/gin
+* middleware的使用
+* context的使用
 
 #### fmt
 * func Fscanf(r io.Reader, format string, a ...interface{}) (n int, err error)；Fscanf 扫描从 r 中读取的文本，并将连续由空格分隔的值存储为连续的实参，其格式由 format 决定。它返回成功解析的条目数
+
+#### go语言排名靠前的爬虫库
+* henrylee2cn/pholucs
+* gocrawl
+* colly
+* hu17889/go_spider
+
+#### 爬虫项目简介
+* 本项目中不使用第三方爬虫库
+* 使用ElasticSearch作为数据存储
+* 使用go语言标准模版库实现http数据展示部分
+
+#### 爬虫的法律风险
+* robots协议，对方网站的robots协议表明不允许，不能爬取数据。没有禁止爬取也不一定能爬取数据
+* 技术上没有约束力
+* 法律上作为参考
+* 以结果作为导向，用常识来判断
+* QPS,爬取速度不能太快。会影响别人网站的正常使用
+
+#### 爬取风险低的网站
+* 比较廉价的数据，访问量大的网站：金融、体育、新闻、产品....
+
+#### 单任务爬虫
+* 获取bi并打印所有城市第一页用户的详细信息
+
 
 
  
