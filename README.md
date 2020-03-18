@@ -334,7 +334,5 @@ re := regexp.MustCompile(`[a-zA-Z0-9]+@[a-zA-Z0-9.]+\.[a-zA-Z0-9]+`)
 res := re.FindAllString(text,-1)
 fmt.Println(res)
 ```
-
-
-
- 
+* ([a-zA-Z0-9]+)加上括号之后就可以把相关的部分提取给我们，配合方法FindAllStringSubmatch可以获取一个二维数组
+`re := regexp.MustCompile(`([a-zA-Z0-9]+)@([a-zA-Z0-9]+)(\.[a-zA-Z0-9.]+)`)`
