@@ -3,7 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"gomodtest/pipeline"
+	"gomodtest/demo/pipeline"
 	"os"
 )
 

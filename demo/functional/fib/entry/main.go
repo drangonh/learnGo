@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gomodtest/functional/fib"
+	"gomodtest/demo/functional/fib"
 )
 
 func main() {

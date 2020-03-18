@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"go.uber.org/zap"
-	"gomodtest/tree"
+	"gomodtest/demo/tree"
 )
 
 //定义别名扩展已有类

@@ -3,7 +3,7 @@ package filelisting
 import (
 	"errors"
 	"fmt"
-	"gomodtest/errhandling/filelistingserver/handler"
+	"gomodtest/demo/errhandling/filelistingserver/handler"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"

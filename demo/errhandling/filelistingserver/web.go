@@ -1,8 +1,8 @@
 package main
 
 import (
-	"gomodtest/errhandling/filelistingserver/filelisting"
-	"gomodtest/errhandling/filelistingserver/handler"
+	"gomodtest/demo/errhandling/filelistingserver/filelisting"
+	"gomodtest/demo/errhandling/filelistingserver/handler"
 	"net/http"
 	_ "net/http/pprof"
 )

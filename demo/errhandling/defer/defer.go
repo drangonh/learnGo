@@ -3,7 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"gomodtest/functional/fib"
+	"gomodtest/demo/functional/fib"
 	os2 "os"
 )
 

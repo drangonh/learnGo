@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"gomodtest/retriever/mock"
-	real2 "gomodtest/retriever/real"
+	"gomodtest/demo/retriever/mock"
+	real2 "gomodtest/demo/retriever/real"
 	"time"
 )
 

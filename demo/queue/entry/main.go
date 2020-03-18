@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gomodtest/queue"
+	"gomodtest/demo/queue"
 )
 
 func main() {

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gomodtest/downhtml/testing"
+	"gomodtest/demo/downhtml/testing"
 )
 
 //func getRetriever() testing.Retriever {

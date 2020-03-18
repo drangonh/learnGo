@@ -56,7 +56,7 @@
     
 
 *闭包*  
-![](macdownPic/闭包.png)
+![](demo/macdownPic/闭包.png)
 
 *闭包的应用*
 * 可以访问自由变量
@@ -130,7 +130,7 @@
 * 分析性能慢在哪里，然后优化代码
 
 #### 生成文档
-* godoc使用报错：![godoc报错解决](macdownPic/godoc.jpg)
+* godoc使用报错：![godoc报错解决](demo/macdownPic/godoc.jpg)
 * go help doc,查看go doc的命令
 * go doc go文件名，可以查看该文件的方法；go doc Queue
 * godoc -http :6060,然后在本地打开localhost:6060就可以查看代码的文档了。其中包括go自带的库，git，自己项目开发的文档
@@ -182,7 +182,7 @@
 ```
 * 编译器/解释器/虚拟机层面的多任务
 * 多个协程可以在一个或者多个线程上运行 
-* ![goroutine](macdownPic/goroutine.png)这张图片代表的是一个进程，一个进程包含多个线程。线程中包含一个或者多个协程
+* ![goroutine](demo/macdownPic/goroutine.png)这张图片代表的是一个进程，一个进程包含多个线程。线程中包含一个或者多个协程
 
 #### goroutine的定义
 * 任何函数加上go关键字就可以交给调度器运行
