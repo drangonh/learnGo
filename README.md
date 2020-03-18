@@ -314,6 +314,25 @@
 #### 单任务爬虫
 * 获取bi并打印所有城市第一页用户的详细信息
 
+#### 正则表达式
+* 使用css选择器，例如$('#cityList>dd>a') 
+* 使用xpath
+* 正则表达式 
+* .匹配任意字符，+至少一个字符，*0个或多个字符
+* ""中的字符会转义，\.表示转义字符. \\.表示字符.   ,在``中的字符不会转义
+* `re := regexp.MustCompile(".+@.+\\..+")`
+* `re := regexp.MustCompile(`.+@.+\..+`)`
+* `[a-zA-z0-9]`表示所有大写和小写和数字字符
+* ```cassandraql
+const text = `
+my name is ccmouse@gmain.com
+my name is 89dssad@qq.com
+my name is 89dssad@qq.com.cn
+`
+	re := regexp.MustCompile(`[a-zA-Z0-9]+@[a-zA-Z0-9.]+\.[a-zA-Z0-9]+`)
+	res := re.FindAllString(text,-1)
+	fmt.Println(res)
+```
 
 
  
