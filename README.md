@@ -323,16 +323,18 @@
 * `re := regexp.MustCompile(".+@.+\\..+")`
 * `re := regexp.MustCompile(`.+@.+\..+`)`
 * `[a-zA-z0-9]`表示所有大写和小写和数字字符
-* ```cassandraql
+* 例子
+```
 const text = `
 my name is ccmouse@gmain.com
 my name is 89dssad@qq.com
-my name is 89dssad@qq.com.cn
+ my name is 89dssad@qq.com.cn
 `
-	re := regexp.MustCompile(`[a-zA-Z0-9]+@[a-zA-Z0-9.]+\.[a-zA-Z0-9]+`)
-	res := re.FindAllString(text,-1)
-	fmt.Println(res)
+re := regexp.MustCompile(`[a-zA-Z0-9]+@[a-zA-Z0-9.]+\.[a-zA-Z0-9]+`)
+res := re.FindAllString(text,-1)
+fmt.Println(res)
 ```
+
 
 
  
