@@ -47,26 +47,16 @@ func determineEncoding(r io.Reader) encoding.Encoding {
 }
 
 func printCityList(contents []byte) {
-
-	//<a href="http://www.zhenai.com/zhenghun/aba" data-v-5e16505f>阿坝</a>
-	//<a href="http://www.zhenai.com/zhenghun/akesu" data-v-5e16505f>阿克苏</a>
-	//<a href="http://www.zhenai.com/zhenghun/alashanmeng" data-v-5ef>阿拉善盟</a>
-	//<a href="http://www.zhenai.com/zhenghun/aletai" data-v-5e16505f>阿勒泰</a>
-
-	// <a target="_blank" href="http://www.zhenai.com/zhenghun/xuzhou">徐州征婚</a>
-	// re,err:= regexp.Compile(`<a[^>]+href="http://www.zhenai.com/zhenghun/[^>]+">[^<]+</a>`)
-
-	//<a data-v-5e16505f="" href="http://www.zhenai.com/zhenghun/tacheng">塔城</a>
-	//<a data-v-5e16505f="" href="http://www.zhenai.com/zhenghun/aba">阿坝</a>
-	re, err := regexp.Compile(`<a[^>]+href="http://www.zhenai.com/zhenghun/[^>]+"[^>]+>[^<]+</a>`)
+	re, err := regexp.Compile(`<a[^>]+href="(http://www.zhenai.com/zhenghun/[^>]+)"[^>]+>([^<]+)</a>`)
 	if err != nil {
 		panic(err)
 	}
 
 	//fmt.Printf("%s\n",contents)
 
-	match := re.FindAll(contents, -1)
+	match := re.FindAllSubmatch(contents, -1)
 	for _, v := range match {
-		fmt.Printf("%s\n", v)
+		fmt.Printf("name:%s,url:%s\n", v[2], v[1])
 	}
+	fmt.Printf("%d", len(match))
 }
