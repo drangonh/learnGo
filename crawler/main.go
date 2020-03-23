@@ -7,7 +7,7 @@ import (
 
 func main() {
 	engine2.Run(engine2.Request{
-		Url:       "http://album.zhenai.com/u/1774362825",
+		Url:       "http://www.zhenai.com/zhenghun",
 		ParseFunc: parser.ParseCityList,
 	})
 }

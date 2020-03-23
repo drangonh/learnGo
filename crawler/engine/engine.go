@@ -15,22 +15,28 @@ func Run(seeds ...Request) {
 		r := requests[0]
 		requests = requests[1:]
 
-		//查询数据
-		body, err := fetcher.Fetch(r.Url)
-
-		log.Printf("Fetching url %s", r.Url)
+		parseResult, err := Worker(r)
 		if err != nil {
-			log.Printf("Fetching error url %s", r.Url)
 			continue
 		}
-
-		//解析数据
-		parseResult := r.ParseFunc(body)
-
 		requests = append(requests, parseResult.Requests...)
 
 		for _, item := range parseResult.Items {
 			log.Printf("Got it item %v", item)
 		}
 	}
+}
+
+func Worker(r Request) (ParseResult, error) {
+	//查询数据
+	body, err := fetcher.Fetch(r.Url)
+
+	log.Printf("Fetching url %s", r.Url)
+	if err != nil {
+		log.Printf("Fetching error url %s", r.Url)
+		return ParseResult{}, err
+	}
+
+	//解析数据
+	return r.ParseFunc(body), nil
 }
