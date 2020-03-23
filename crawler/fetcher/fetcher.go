@@ -7,13 +7,13 @@ import (
 	"golang.org/x/text/encoding"
 	unicode2 "golang.org/x/text/encoding/unicode"
 	"golang.org/x/text/transform"
-	"io"
 	"io/ioutil"
 	"net/http"
 )
 
+//请求网络数据
 func Fetch(url string) ([]byte, error) {
-	resp, err := http.Get("http://www.zhenai.com/zhenghun")
+	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
 	}
@@ -25,8 +25,9 @@ func Fetch(url string) ([]byte, error) {
 	}
 
 	//转换成utf-8
-	e := determineEncoding(resp.Body)
-	utf8Reader := transform.NewReader(resp.Body, e.NewDecoder())
+	bodyReader := bufio.NewReader(resp.Body)
+	e := determineEncoding(bodyReader)
+	utf8Reader := transform.NewReader(bodyReader, e.NewDecoder())
 	all, err := ioutil.ReadAll(utf8Reader)
 	if err != nil {
 		return nil, err
@@ -34,8 +35,8 @@ func Fetch(url string) ([]byte, error) {
 	return all, nil
 }
 
-func determineEncoding(r io.Reader) encoding.Encoding {
-	bytes, err := bufio.NewReader(r).Peek(1024)
+func determineEncoding(r *bufio.Reader) encoding.Encoding {
+	bytes, err := r.Peek(1024)
 	if err != nil {
 		fmt.Printf("Fetcher error %v", err)
 		return unicode2.UTF8
