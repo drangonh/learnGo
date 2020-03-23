@@ -15,6 +15,7 @@ func Run(seeds ...Request) {
 		r := requests[0]
 		requests = requests[1:]
 
+		//查询数据
 		body, err := fetcher.Fetch(r.Url)
 
 		log.Printf("Fetching url %s", r.Url)
@@ -23,6 +24,7 @@ func Run(seeds ...Request) {
 			continue
 		}
 
+		//解析数据
 		parseResult := r.ParseFunc(body)
 
 		requests = append(requests, parseResult.Requests...)
