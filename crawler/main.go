@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	engine2.Run(engine2.Request{
+	engine2.ConcurrentEngine{}.Run(engine2.Request{
 		Url:       "http://www.zhenai.com/zhenghun",
 		ParseFunc: parser.ParseCityList,
 	})

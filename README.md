@@ -336,3 +336,9 @@ fmt.Println(res)
 ```
 * ([a-zA-Z0-9]+)加上括号之后就可以把相关的部分提取给我们，配合方法FindAllStringSubmatch可以获取一个二维数组
 `re := regexp.MustCompile(`([a-zA-Z0-9]+)@([a-zA-Z0-9]+)(\.[a-zA-Z0-9.]+)`)`
+
+###单任务爬虫
+ ![流程图](./crawler/image/单任务爬虫.jpeg)
+ 
+### 并发版爬虫
+![流程图](./crawler/image/并发版爬虫.jpeg)
