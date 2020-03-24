@@ -11,6 +11,7 @@ func Run(seeds ...Request) {
 		requests = append(requests, r)
 	}
 
+	var limitCount = 2
 	for len(requests) > 0 {
 		r := requests[0]
 		requests = requests[1:]
@@ -23,6 +24,10 @@ func Run(seeds ...Request) {
 
 		for _, item := range parseResult.Items {
 			log.Printf("Got it item %v", item)
+		}
+		limitCount--
+		if limitCount == 0 {
+			break
 		}
 	}
 }

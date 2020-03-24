@@ -19,19 +19,14 @@ func ParseCityList(contexts []byte) engine.ParseResult {
 	//获取城市的数组
 	match := re.FindAllSubmatch(contexts, -1)
 
-	limit := 10
 	for _, v := range match {
 		//fmt.Printf("name:%s,url:%s\n", v[2], v[1])
 		result.Items = append(result.Items, "city "+string(v[2]))
 		result.Requests = append(result.Requests,
 			engine.Request{
 				Url:       string(v[1]),
-				ParseFunc: engine.NilParser,
+				ParseFunc: ParseCity,
 			})
-		limit--
-		if limit == 0 {
-			break
-		}
 	}
 	fmt.Printf("%d\n", len(match))
 
