@@ -7,17 +7,14 @@ import (
 )
 
 //<a href="http://album.zhenai.com/u/1936803953" target="_blank">一直很安静</a>
-const cityRe = `<a href=("http://album.zhenai.com/u/[0-9]+)"[^>]*>([^<]+)</a>`
+var cityRe = regexp.MustCompile(`<a href=("http://album.zhenai.com/u/[0-9]+)"[^>]*>([^<]+)</a>`)
+var cityUrlRe = regexp.MustCompile(
+	`href="(http://www.zhenai.com/zhenghun/[^"]+)"`)
 
 //该文件是解析数据
 func ParseCity(contexts []byte) engine.ParseResult {
-	re, err := regexp.Compile(cityRe)
-	if err != nil {
-		panic(err)
-	}
-
 	result := engine.ParseResult{}
-	match := re.FindAllSubmatch(contexts, -1)
+	match := cityRe.FindAllSubmatch(contexts, -1)
 	for _, v := range match {
 		fmt.Printf("name:%s,url:%s\n", v[2], v[1])
 		result.Items = append(result.Items, "user "+string(v[2]))
@@ -31,5 +28,14 @@ func ParseCity(contexts []byte) engine.ParseResult {
 	}
 	fmt.Printf("%d\n", len(match))
 
+	match = cityUrlRe.FindAllSubmatch(
+		contexts, -1)
+	for _, m := range match {
+		result.Requests = append(result.Requests,
+			engine.Request{
+				Url:       string(m[1]),
+				ParseFunc: ParseCity,
+			})
+	}
 	return result
 }

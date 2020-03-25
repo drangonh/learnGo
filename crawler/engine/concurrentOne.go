@@ -10,10 +10,14 @@ type ConcurrentEngineOne struct {
 }
 
 type SchedulerOne interface {
+	WorkerNotifier
 	Submit(Request)
-	ConfigureMasterWorkerChan(chan Request)
-	WorkerReady(chan Request)
+	WorkerChan() chan Request
 	Run()
+}
+
+type WorkerNotifier interface {
+	WorkerReady(chan Request)
 }
 
 func (e *ConcurrentEngineOne) RunOne(seeds ...Request) {
@@ -22,7 +26,7 @@ func (e *ConcurrentEngineOne) RunOne(seeds ...Request) {
 
 	//控制同时开放的goroutine
 	for i := 0; i < e.WorkerCount; i++ {
-		createWorkerOne(out, e.SchedulerOne)
+		createWorkerOne(e.SchedulerOne.WorkerChan(), out, e.SchedulerOne)
 	}
 
 	for _, r := range seeds {
@@ -41,8 +45,7 @@ func (e *ConcurrentEngineOne) RunOne(seeds ...Request) {
 	}
 }
 
-func createWorkerOne(out chan ParseResult, s SchedulerOne) {
-	in := make(chan Request)
+func createWorkerOne(in chan Request, out chan ParseResult, s WorkerNotifier) {
 	go func() {
 		for {
 			s.WorkerReady(in)
