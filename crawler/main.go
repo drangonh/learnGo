@@ -7,11 +7,11 @@ import (
 )
 
 func main() {
-	e := engine2.ConcurrentEngine{
-		Scheduler:   &scheduler.SimpleScheduler{},
-		WorkerCount: 1,
+	e := engine2.ConcurrentEngineOne{
+		SchedulerOne: &scheduler.QueuedScheduler{},
+		WorkerCount:  1,
 	}
-	e.Run(engine2.Request{
+	e.RunOne(engine2.Request{
 		Url:       "http://www.zhenai.com/zhenghun",
 		ParseFunc: parser.ParseCityList,
 	})
