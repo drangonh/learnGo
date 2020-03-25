@@ -2,7 +2,7 @@ package main
 
 import (
 	engine2 "gomodtest/crawler/engine"
-	"gomodtest/crawler/engine/scheduler"
+	"gomodtest/crawler/scheduler"
 	"gomodtest/crawler/zhenai/parser"
 )
 
