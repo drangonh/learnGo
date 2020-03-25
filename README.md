@@ -323,6 +323,7 @@
 * `re := regexp.MustCompile(".+@.+\\..+")`
 * `re := regexp.MustCompile(`.+@.+\..+`)`
 * `[a-zA-z0-9]`表示所有大写和小写和数字字符
+* [\d]+ 表示多个数字
 * 例子
 ```
 const text = `
@@ -342,3 +343,21 @@ fmt.Println(res)
  
 ### 并发版爬虫
 ![流程图](./crawler/image/并发版爬虫.jpeg)
+![流程图](./crawler/image/并发版爬虫One.jpeg)
+![流程图](./crawler/image/并发版爬虫Two.jpeg)
+![流程图](./crawler/image/并发版爬虫Three.jpeg)
+
+### 数据去重复，URL去重
+* 哈希表：直接存储URL占用空间大
+* URL转MD5，再存哈希，速度比较慢，需要计算
+* 使用bloom filter 多重哈希结构
+* 使用Redis等Key-Value存储系统实现分布式去重
+
+#### bloom filter
+* Bloom-Filter，即布隆过滤器
+* Bloom Filter（BF）是一种空间效率很高的随机数据结构，它利用位数组很简洁地表示一个集合，
+并能判断一个元素是否属于这个集合。它是一个判断元素是否存在集合的快速的概率算法。
+Bloom Filter有可能会出现错误判断，但不会漏掉判断。也就是Bloom Filter判断元素不再集合，
+那肯定不在。如果判断元素存在集合中，有一定的概率判断错误。因此，Bloom Filter”不适合那些“零错误的应用场合。
+而在能容忍低错误率的应用场合下，Bloom Filter比其他常见的算法（如hash，折半查找）极大节省了空间。 
+* 它的优点是空间效率和查询时间都远远超过一般的算法，缺点是有一定的误识别率和删除困难。

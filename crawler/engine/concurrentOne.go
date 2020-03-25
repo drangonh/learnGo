@@ -1,12 +1,9 @@
 package engine
 
-import (
-	"log"
-)
-
 type ConcurrentEngineOne struct {
 	SchedulerOne SchedulerOne
 	WorkerCount  int
+	ItemChan     chan interface{}
 }
 
 type SchedulerOne interface {
@@ -30,16 +27,25 @@ func (e *ConcurrentEngineOne) RunOne(seeds ...Request) {
 	}
 
 	for _, r := range seeds {
+		if isDuplicate(r.Url) {
+			continue
+		}
 		e.SchedulerOne.Submit(r)
 	}
 
 	for {
 		result := <-out
 		for _, item := range result.Items {
-			log.Printf("GOt it item %v", item)
+			//log.Printf("GOt it item %v", item)
+			go func() {
+				e.ItemChan <- item
+			}()
 		}
 
 		for _, request := range result.Requests {
+			if isDuplicate(request.Url) {
+				continue
+			}
 			e.SchedulerOne.Submit(request)
 		}
 	}
@@ -57,4 +63,16 @@ func createWorkerOne(in chan Request, out chan ParseResult, s WorkerNotifier) {
 			out <- result
 		}
 	}()
+}
+
+// URL dedup：URL去重，用最简单的哈希表去重
+var visitedUrls = make(map[string]bool)
+
+func isDuplicate(url string) bool {
+	if visitedUrls[url] {
+		return true
+	}
+
+	visitedUrls[url] = true
+	return false
 }
