@@ -361,3 +361,29 @@ Bloom Filter有可能会出现错误判断，但不会漏掉判断。也就是Bl
 那肯定不在。如果判断元素存在集合中，有一定的概率判断错误。因此，Bloom Filter”不适合那些“零错误的应用场合。
 而在能容忍低错误率的应用场合下，Bloom Filter比其他常见的算法（如hash，折半查找）极大节省了空间。 
 * 它的优点是空间效率和查询时间都远远超过一般的算法，缺点是有一定的误识别率和删除困难。
+
+### ElasticSearch
+* 全文搜索引擎
+* 快速地存储、搜索、分析海量数据
+* 用户：维基百科、Stack Overflow、GitHub
+
+### 我们项目中使用ElasticSearch来干嘛？
+* 存储我们爬取的数据
+* 不需要建表、配置字段
+* 只需要存储一个json格式的文档，就能使用ElasticSearch
+* 全文按条件搜索
+
+### ElasticSearch的安装
+* 方式一，安装包安装
+* 方式二：docker
+
+### docker（容器引擎），每个程序放在docker中就例如是集装箱放在轮船上。这里的轮船相当于docker
+* 容器引擎
+* 打包/发布应用程序，包括系统环境、配置、依赖
+* 虚拟化、沙箱机制
+* 解决了部署方便
+* 用golang编写的
+* ![docker和虚拟机对比](./crawler/image/docker和虚拟机对比.jpeg)
+* 慕课网中免费的两门课程推荐：Docker入门、Elastic Stack入门
+* ![docker官方文档地址](https://docs.docker.com/docker-for-mac/)
+ 
