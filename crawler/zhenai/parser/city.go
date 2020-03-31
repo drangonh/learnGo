@@ -17,7 +17,6 @@ func ParseCity(contexts []byte) engine.ParseResult {
 	match := cityRe.FindAllSubmatch(contexts, -1)
 	for _, v := range match {
 		fmt.Printf("name:%s,url:%s\n", v[2], v[1])
-		result.Items = append(result.Items, "user "+string(v[2]))
 		result.Requests = append(result.Requests,
 			engine.Request{
 				Url: string(v[1]),

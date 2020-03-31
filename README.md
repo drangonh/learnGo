@@ -385,5 +385,18 @@ Bloom Filter有可能会出现错误判断，但不会漏掉判断。也就是Bl
 * 用golang编写的
 * ![docker和虚拟机对比](./crawler/image/docker和虚拟机对比.jpeg)
 * 慕课网中免费的两门课程推荐：Docker入门、Elastic Stack入门
-* ![docker官方文档地址](https://docs.docker.com/docker-for-mac/)
+* [docker官方文档地址](https://docs.docker.com/docker-for-mac/)
  
+### docker常用的镜像
+* docker run -it alpine sh，最小的Linux镜像，退出该镜像：exit
+* docker run -d -p 80:80 nginx;-d是一直在后台运行，-p是端口重定向，把里面80端口映射到外面的80端口,nginx web server,
+nginx关掉可以通过，docker ps查看ID，然后docker kill ID,例如docker kill 80b8cfad35e9
+
+### elasticSearch安装
+* cn.bing.com中搜索docker pull elasticSearch
+* 进入到 [安装网址](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html),
+按照命令进行安装
+* docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.6.1;启动elasticSearch
+
+
+__****__
