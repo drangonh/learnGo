@@ -398,5 +398,9 @@ nginx关掉可以通过，docker ps查看ID，然后docker kill ID,例如docker 
 按照命令进行安装
 * docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.6.1;启动elasticSearch
 
-
-__****__
+### docker常见命令
+* docker version
+* docker info
+* docker kiss id
+* docker ps:查看ID
+* docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.6.1
