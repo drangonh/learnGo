@@ -100,10 +100,8 @@ func ParseProfile(
 	for _, m := range matches {
 		result.Requests = append(result.Requests,
 			engine.Request{
-				Url: string(m[1]),
-				ParseFunc: func(bytes []byte) engine.ParseResult {
-					return ParseProfile(bytes, string(m[1]), string(m[2]))
-				},
+				Url:       string(m[1]),
+				ParseFunc: ProfileParser(string(m[2])),
 			})
 	}
 

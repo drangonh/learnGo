@@ -9,10 +9,14 @@ import (
 
 func main() {
 	//并发版爬虫二
+	ItemSaver, err := persist.ItemSaver("dating_profile")
+	if err != nil {
+		panic(err)
+	}
 	e := engine2.ConcurrentEngineOne{
 		SchedulerOne: &scheduler.QueuedScheduler{},
 		WorkerCount:  1,
-		ItemChan:     persist.ItemSaver(),
+		ItemChan:     ItemSaver,
 	}
 	e.RunOne(engine2.Request{
 		Url:       "http://www.zhenai.com/zhenghun",

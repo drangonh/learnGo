@@ -9,7 +9,7 @@ import (
 const cityListRe = `<a[^>]+href="(http://www.zhenai.com/zhenghun/[^>]+)"[^>]+>([^<]+)</a>`
 
 //该文件是解析数据
-func ParseCityList(contexts []byte) engine.ParseResult {
+func ParseCityList(contexts []byte, _ string) engine.ParseResult {
 	re, err := regexp.Compile(cityListRe)
 	if err != nil {
 		panic(err)

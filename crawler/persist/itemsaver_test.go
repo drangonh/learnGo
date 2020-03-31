@@ -39,13 +39,14 @@ func TestSave(t *testing.T) {
 			Car:        "未购车",
 		}}
 
-	err := save(expected)
+	client, err := elastic.NewClient(elastic.SetSniff(false))
 
 	if err != nil {
 		panic(err)
 	}
 
-	client, err := elastic.NewClient(elastic.SetSniff(false))
+	index := "dating_test"
+	err = save(client, expected, index)
 
 	if err != nil {
 		panic(err)

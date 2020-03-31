@@ -12,7 +12,7 @@ func TestParseCityList(t *testing.T) {
 		panic(err)
 	}
 
-	results := ParseCityList(contexts)
+	results := ParseCityList(contexts, "")
 
 	const resultsSize = 494
 

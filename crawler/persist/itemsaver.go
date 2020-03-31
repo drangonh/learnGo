@@ -8,7 +8,14 @@ import (
 	"gomodtest/crawler/engine"
 )
 
-func ItemSaver() chan engine.Item {
+func ItemSaver(index string) (chan engine.Item, error) {
+	client, err := elastic.NewClient(
+		//must set false on docker
+		elastic.SetSniff(false))
+	if err != nil {
+		return nil, err
+	}
+
 	out := make(chan engine.Item)
 	go func() {
 		itemCount := 0
@@ -16,7 +23,8 @@ func ItemSaver() chan engine.Item {
 			item := <-out
 			//log.Printf("Item Saver: got item "+
 			//	"#%d: %v", itemCount, item)
-			err := save(item)
+
+			err := save(client, item, index)
 			if err != nil {
 				fmt.Println(err)
 			}
@@ -24,17 +32,10 @@ func ItemSaver() chan engine.Item {
 		}
 	}()
 
-	return out
+	return out, err
 }
 
-func save(item engine.Item) error {
-	client, err := elastic.NewClient(
-		//must set false on docker
-		elastic.SetSniff(false))
-	if err != nil {
-		return err
-	}
-
+func save(client *elastic.Client, item engine.Item, index string) error {
 	if item.Type == "" {
 		return errors.New("must supply type")
 	}
@@ -44,14 +45,14 @@ func save(item engine.Item) error {
 	}
 
 	indexService := client.Index().
-		Index("dating_profile").
+		Index(index).
 		Type(item.Type).
 		BodyJson(item)
 	if item.Id != "" {
 		indexService.Id(item.Id)
 	}
 
-	_, err = indexService.
+	_, err := indexService.
 		Do(context.Background())
 
 	if err != nil {

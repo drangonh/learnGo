@@ -12,17 +12,15 @@ var cityUrlRe = regexp.MustCompile(
 	`href="(http://www.zhenai.com/zhenghun/[^"]+)"`)
 
 //该文件是解析数据
-func ParseCity(contexts []byte) engine.ParseResult {
+func ParseCity(contexts []byte, url string) engine.ParseResult {
 	result := engine.ParseResult{}
 	match := cityRe.FindAllSubmatch(contexts, -1)
 	for _, v := range match {
 		fmt.Printf("name:%s,url:%s\n", v[2], v[1])
 		result.Requests = append(result.Requests,
 			engine.Request{
-				Url: string(v[1]),
-				ParseFunc: func(bytes []byte) engine.ParseResult {
-					return ParseProfile(bytes, string(v[1]), string(v[2]))
-				},
+				Url:       string(v[1]),
+				ParseFunc: ProfileParser(string(v[2])),
 			})
 	}
 	fmt.Printf("%d\n", len(match))
@@ -37,4 +35,10 @@ func ParseCity(contexts []byte) engine.ParseResult {
 			})
 	}
 	return result
+}
+
+func ProfileParser(name string) engine.ParserFunc {
+	return func(c []byte, url string) engine.ParseResult {
+		return ParseProfile(c, url, name)
+	}
 }

@@ -43,5 +43,5 @@ func Worker(r Request) (ParseResult, error) {
 	}
 
 	//解析数据
-	return r.ParseFunc(body), nil
+	return r.ParseFunc(body, r.Url), nil
 }
