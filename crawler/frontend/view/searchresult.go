@@ -18,7 +18,6 @@ func CreateSearchResultView(
 	}
 }
 
-func (s SearchResultView) Render(
-	w io.Writer, data model.SearchResult) error {
+func (s SearchResultView) Render(w io.Writer, data model.SearchResult) error {
 	return s.template.Execute(w, data)
 }

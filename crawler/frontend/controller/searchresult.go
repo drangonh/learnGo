@@ -13,6 +13,7 @@ import (
 	"strings"
 )
 
+//这个SearchResultHandler功能就是获取数据然后去展示出来
 type SearchResultHandler struct {
 	view   view.SearchResultView
 	client *elastic.Client
@@ -35,6 +36,7 @@ func CreateSearchResultHandler(
 
 func (h SearchResultHandler) ServeHTTP(
 	w http.ResponseWriter, req *http.Request) {
+	//获取查询条件
 	q := strings.TrimSpace(req.FormValue("q"))
 
 	from, err := strconv.Atoi(

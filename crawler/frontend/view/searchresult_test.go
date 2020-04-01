@@ -12,13 +12,12 @@ import (
 	"gomodtest/crawler/engine"
 	"gomodtest/crawler/frontend/model"
 	common "gomodtest/crawler/model"
-	"html/template"
 	"os"
 	"testing"
 )
 
-func TestTemplate(t *testing.T) {
-	template := template.Must(template.ParseFiles("template.html"))
+func TestSearchResultView_Render(t *testing.T) {
+	view := CreateSearchResultView("template.html")
 	page := model.SearchResult{
 		Hits:     123,
 		Start:    0,
@@ -50,7 +49,7 @@ func TestTemplate(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	err = template.Execute(out, page)
+	err = view.Render(out, page)
 	if err != nil {
 		panic(err)
 	}
