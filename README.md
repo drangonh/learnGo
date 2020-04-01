@@ -404,3 +404,9 @@ nginx关掉可以通过，docker ps查看ID，然后docker kill ID,例如docker 
 * docker kiss id
 * docker ps:查看ID
 * docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.6.1
+
+### html/template
+* 取值
+* 选择
+* 循环
+* 函数调用
