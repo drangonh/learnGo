@@ -24,7 +24,7 @@ func post(poster Poster) string {
 
 //接口组合只要包含Retriever，Poster中含有的方法即可
 type RetrieverPoster interface {
-	Retriever
+	Get(url string) string
 	Poster
 }
 
@@ -39,7 +39,39 @@ func download(r Retriever) string {
 	return r.Get("https://www.imooc.com")
 }
 
+//1
+type I interface {
+	Get() int
+	Set(int)
+}
+
+//2
+type S []interface{}
+
+func (s *S) Get() int {
+	head := (*s)[0]
+	return head.(int)
+}
+
+func (s *S) Set(age int) {
+	*s = append(*s, age)
+
+}
+
+//3
+func f(i I) {
+	i.Set(10)
+	fmt.Println(i.Get())
+}
+
 func main() {
+	//retriever()
+
+	que := S{}
+	f(&que)
+}
+
+func retriever() {
 	var r Retriever
 	r = mock.Retriever{"wo shi shi"}
 	inspect(r)

@@ -32,5 +32,5 @@ czcz
 `
 	printFileContents(strings.NewReader(s))
 
-	printFile("loop/abc.txt")
+	printFile("demo/loop/abc.txt")
 }

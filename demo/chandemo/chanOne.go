@@ -21,7 +21,7 @@ func main() {
 	//beego.Run();
 	fmt.Printf(runtime.GOARCH)
 	ch := make(chan int)
-	c := 0
+	//c := 0
 	stopCh := make(chan bool)
 
 	go Chann(ch, stopCh)
@@ -40,15 +40,15 @@ func main() {
 
 		case s := <-ch:
 			fmt.Println("Receive", s)
-		case c = <-ch:
-			fmt.Println("Recvice", c)
-			fmt.Println("channel")
+		//case c = <-ch:
+		//	fmt.Println("Recvice", c)
+		//	fmt.Println("channel")
 
-			//_下划线在import中表示执行该模块该包中所有的init()函数，之后不能用模块名调用该模块的方法
-			//下划线在代码中表示忽略这个变量
+		//_下划线在import中表示执行该模块该包中所有的init()函数，之后不能用模块名调用该模块的方法
+		//下划线在代码中表示忽略这个变量
 		case _ = <-stopCh:
-			goto end
+			goto end1
 		}
 	}
-end:
+end1:
 }

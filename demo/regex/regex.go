@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"regexp"
+	"strings"
 )
 
 const text = `
@@ -23,4 +24,28 @@ func main() {
 	//res := re.FindAllString(text, -1)
 	res := re.FindAllStringSubmatch(text, -1)
 	fmt.Println(res)
+
+	s := `### 编辑文章内容
+
+	使用markdown的语法
+	`
+	replace(s)
+
+}
+
+func replace(s string) {
+	s = strings.Replace(s, "\n", "", -1)
+	s = strings.Replace(s, " ", "", -1)
+
+	fmt.Println("替换后的s：：", s)
+
+	str := "这里是 www\n.runoob\n.com"
+	fmt.Println("-------- 原字符串 ----------")
+	fmt.Println(str)
+	// 去除空格
+	str = strings.Replace(str, " ", "", -1)
+	// 去除换行符
+	str = strings.Replace(str, "\n", "", -1)
+	fmt.Println("-------- 去除空格与换行后 ----------")
+	fmt.Println(str)
 }

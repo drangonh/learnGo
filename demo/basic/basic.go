@@ -1,6 +1,9 @@
 package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 func triangle() {
 	var a, b int
@@ -12,5 +15,20 @@ func calcTriangle(a int, b int) int {
 }
 
 func main() {
+	b := 1 << 5
+	fmt.Println(b)
 
+	a, b := 3, 4
+	swap(&a, &b)
+
+	fmt.Println(a, b, &a, &b)
+}
+
+func swap(a, b *int) {
+
+	fmt.Println(a, b, *a, *b)
+
+	a, b = b, a
+
+	fmt.Println(a, b, *a, *b)
 }
