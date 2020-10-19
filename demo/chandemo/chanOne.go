@@ -7,11 +7,9 @@ import (
 )
 
 func Chann(ch chan int, stopCh chan bool) {
-	var i int
-	i = 10
 	for j := 0; j < 10; j++ {
-		ch <- i
-		time.Sleep(time.Second) //柱塞进程
+		ch <- j
+		//time.Sleep(time.Second) //柱塞进程
 	}
 	stopCh <- true
 
@@ -40,9 +38,9 @@ func main() {
 
 		case s := <-ch:
 			fmt.Println("Receive", s)
-		//case c = <-ch:
-		//	fmt.Println("Recvice", c)
-		//	fmt.Println("channel")
+		case c := <-ch:
+			fmt.Println("Recvice", c)
+			fmt.Println("channel")
 
 		//_下划线在import中表示执行该模块该包中所有的init()函数，之后不能用模块名调用该模块的方法
 		//下划线在代码中表示忽略这个变量

@@ -339,13 +339,13 @@ fmt.Println(res)
 `re := regexp.MustCompile(`([a-zA-Z0-9]+)@([a-zA-Z0-9]+)(\.[a-zA-Z0-9.]+)`)`
 
 ###单任务爬虫
- ![流程图](./crawler/image/单任务爬虫.jpeg)
+ ![流程图](crawler/image/单任务爬虫.jpeg)
  
 ### 并发版爬虫
-![流程图](./crawler/image/并发版爬虫.jpeg)
-![流程图](./crawler/image/并发版爬虫One.jpeg)
-![流程图](./crawler/image/并发版爬虫Two.jpeg)
-![流程图](./crawler/image/并发版爬虫Three.jpeg)
+![流程图](crawler/image/并发版爬虫.jpeg)
+![流程图](crawler/image/并发版爬虫One.jpeg)
+![流程图](crawler/image/并发版爬虫Two.jpeg)
+![流程图](crawler/image/并发版爬虫Three.jpeg)
 
 ### 数据去重复，URL去重
 * 哈希表：直接存储URL占用空间大
@@ -383,7 +383,7 @@ Bloom Filter有可能会出现错误判断，但不会漏掉判断。也就是Bl
 * 虚拟化、沙箱机制
 * 解决了部署方便
 * 用golang编写的
-* ![docker和虚拟机对比](./crawler/image/docker和虚拟机对比.jpeg)
+* ![docker和虚拟机对比](crawler/image/docker和虚拟机对比.jpeg)
 * 慕课网中免费的两门课程推荐：Docker入门、Elastic Stack入门
 * [docker官方文档地址](https://docs.docker.com/docker-for-mac/)
  

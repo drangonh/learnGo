@@ -19,5 +19,5 @@ func main() {
 	}
 
 	//加一个延迟是为了在第一个for结束之后main函数还未结束。
-	time.Sleep(time.Minute)
+	time.Sleep(time.Second)
 }
