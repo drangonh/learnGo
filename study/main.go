@@ -35,6 +35,11 @@ import (
 	"gomodtest/study/channel"
 )
 
+/**
+ * @Description //运行study目录中的demo
+ * @Param
+ * @return
+ **/
 func main() {
 	channel.ChanDemo3()
 	//mutex.MutexDemo3()
