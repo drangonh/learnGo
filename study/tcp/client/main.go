@@ -15,12 +15,15 @@ import (
 )
 
 func main() {
+	// Dial函数和服务端建立连接：
 	conn, err := net.Dial("tcp", "127.0.0.1:20000")
 	if err != nil {
 		fmt.Println("err :", err)
 		return
 	}
 	defer conn.Close() // 关闭连接
+
+	// Stdin是指向标准输入描述符。
 	inputReader := bufio.NewReader(os.Stdin)
 	for {
 		input, _ := inputReader.ReadString('\n') // 读取用户输入
@@ -38,6 +41,6 @@ func main() {
 			fmt.Println("recv failed, err:", err)
 			return
 		}
-		fmt.Println(string(buf[:n]))
+		fmt.Println("服务端：", string(buf[:n]))
 	}
 }
