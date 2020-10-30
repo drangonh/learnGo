@@ -10,6 +10,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"gomodtest/study/tcp/proto"
 	"net"
 )
 
@@ -17,15 +18,14 @@ func process(conn net.Conn) {
 	defer conn.Close() // 关闭连接
 	for {
 		reader := bufio.NewReader(conn)
-		var buf [128]byte
-		n, err := reader.Read(buf[:]) // 读取数据
+		msg, err := proto.Decode(reader) // 读取数据
 		if err != nil {
 			fmt.Println("read from client failed, err:", err)
 			break
 		}
 		//recvStr := string(buf[:n])
 		recvStr := "我已经收到了您的消息"
-		fmt.Println("client端：", string(buf[:n]))
+		fmt.Println("client端：", msg)
 		conn.Write([]byte(recvStr)) // 发送数据
 	}
 }

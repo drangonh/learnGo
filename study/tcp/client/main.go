@@ -9,6 +9,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"gomodtest/study/tcp/proto"
 	"net"
 	"os"
 	"strings"
@@ -26,13 +27,17 @@ func main() {
 	// Stdin是指向标准输入描述符。
 	inputReader := bufio.NewReader(os.Stdin)
 	for {
-		input, _ := inputReader.ReadString('\n') // 读取用户输入
+		fmt.Println("发送")
+		input, _ := inputReader.ReadString('\n') // 读取数据直到用户输入
 		inputInfo := strings.Trim(input, "\r\n")
 		if strings.ToUpper(inputInfo) == "Q" { // 如果输入q就退出
 			return
 		}
-		_, err = conn.Write([]byte(inputInfo)) // 发送数据
+
+		data, err := proto.Encode(inputInfo)
+		_, err = conn.Write(data) // 发送数据
 		if err != nil {
+			fmt.Println("暂无数据发送")
 			return
 		}
 		buf := [512]byte{}
