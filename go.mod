@@ -6,6 +6,7 @@ require (
 	github.com/fortytw2/leaktest v1.3.0 // indirect
 	github.com/gin-gonic/gin v1.5.0
 	github.com/google/go-cmp v0.4.0 // indirect
+	github.com/gorilla/mux v1.8.0
 	github.com/gorilla/websocket v1.4.2
 	github.com/kr/pretty v0.2.0 // indirect
 	github.com/mailru/easyjson v0.7.1 // indirect
@@ -15,5 +16,5 @@ require (
 	golang.org/x/mod v0.3.0 // indirect
 	golang.org/x/net v0.0.0-20200625001655-4c5254603344
 	golang.org/x/text v0.3.2
-	golang.org/x/tools v0.0.0-20200624225443-88f3c62a19ff
+	golang.org/x/tools v0.0.0-20200624225443-88f3c62a19ff // indirect
 )
