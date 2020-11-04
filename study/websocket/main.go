@@ -78,6 +78,13 @@ func (c cat) say() {
 	fmt.Println(c.name)
 }
 
+func recv(c chan int) {
+	ret := <-c
+	fmt.Println("接收成功", ret)
+}
+
+// 等待发送，直接接受
+// 等待接受，直接发送
 func main() {
 
 	// 类型断言配合interface使用。因为interface空接口可以代表任何类型
@@ -85,14 +92,14 @@ func main() {
 	// recover必须在Panic之前，而且recover必须和defer一起使用
 	// 多个Panic，只能捕获最后一个Panic。
 	// defer不能直接跳用recover()
-	defer func() {
-		recover()
-	}()
-	panic("panic error!")
+	//defer func() {
+	//	recover()
+	//}()
+	//panic("panic error!")
 
 	////http标准库
-	//http.HandleFunc("/ws", wsHandler)
-	//http.ListenAndServe("0.0.0.0:5555", nil)
+	http.HandleFunc("/ws", wsHandler)
+	http.ListenAndServe("0.0.0.0:5555", nil)
 }
 
 // 返回2个函数类型的返回值
