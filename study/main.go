@@ -41,7 +41,7 @@ import (
  * @return
  **/
 func main() {
-	channel.ChanDemo3()
+	channel.ChanDemo2()
 	//mutex.MutexDemo3()
 	//singleThread()
 }

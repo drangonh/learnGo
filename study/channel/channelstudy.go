@@ -90,13 +90,13 @@ func printOne(cs chan int) {
 }
 
 func printTwo(cs chan int) {
-	<-cs
-	fmt.Println(2)
+	n := <-cs
+	fmt.Println(n)
 	defer close(cs)
 }
 
 /**
- * @Description 同步输出
+ * @Description 同步输出 {go发送+接受} 或者sync.WaitGroup
  * @Param
  * @return
  **/
